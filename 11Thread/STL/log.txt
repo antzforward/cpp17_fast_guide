@@ -1,0 +1,2 @@
+This is an asynchronous log message.
+This is an asynchronous log message.
