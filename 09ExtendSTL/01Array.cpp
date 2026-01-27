@@ -51,3 +51,4 @@ int main()
     [[maybe_unused]] std::array<int, 8> a8; // 无列表初始化，a5[0] 和 a5[1] 均被默认初始化，全部都是随机值。
     println("std::array<int, 2> a8\t", a8);
 }
+//cl /EHsc /std:c++17 01Array.cpp
