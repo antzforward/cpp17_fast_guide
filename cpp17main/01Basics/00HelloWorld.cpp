@@ -1,6 +1,5 @@
 #include <iostream>
 #include <vector>
-#include <memory>
 #include "../TestMacro.h"
 // 使用示例
 int main() {
