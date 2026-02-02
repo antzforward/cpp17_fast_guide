@@ -1,5 +1,7 @@
 #ifndef __TEST_H_INCLUDED__
 #define __TEST_H_INCLUDED__
+#include <iostream>
+#include <memory>
 // 完整的性能分析宏
 #if _WIN32
 #include <windows.h>
