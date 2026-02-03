@@ -3,6 +3,9 @@
 #include "../TestMacro.h"
 // 使用示例
 int main() {
+	// added the two lines below
+	std::ios_base::sync_with_stdio(false);
+	std::cin.tie(NULL);  
     PERF_START(test1)
     
     // 测试代码 - 分配一些内存

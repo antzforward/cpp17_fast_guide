@@ -54,6 +54,9 @@ void analyze_struct(){
 #endif
 
 int main() {
+	// added the two lines below
+	std::ios_base::sync_with_stdio(false);
+	std::cin.tie(NULL); 
 	{
 		auto b = B{};
 		auto [x,y] = b;

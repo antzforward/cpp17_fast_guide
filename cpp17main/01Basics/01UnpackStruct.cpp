@@ -34,6 +34,9 @@ MyStruct getStruct(){
 	return MyStruct{42,"Hello World",0.001};
 }
 int main() {
+	// added the two lines below
+	std::ios_base::sync_with_stdio(false);
+	std::cin.tie(NULL); 
 	///CODE:struct MyStruct{
 	///CODE:	int i;
 	///CODE:	std::string s;
@@ -123,29 +126,7 @@ int main() {
 		//MyStruct.i：41          MyStruct.s：            MyStruct.c：3.1415926535
 		std::cout<<"MyStruct.i："<<u<<"		MyStruct.s："<<v<<"		MyStruct.c："<<std::setprecision(12)<<w<<std::endl;
 		//MyStruct.i：41          MyStruct.s：Empty Boy!          MyStruct.c：3.1415926535
-    }
-    
-    
-    //PERF_START(test1)
-    
-     //测试代码 - 分配一些内存
-    //std::vector<int> vec;
-    //for (int i = 0; i < 1000000; i++) {
-    //    vec.push_back(i);
-    //}
-    
-    //PERF_END(test1)
-    
-    //PERF_START(test2)
-    
-     //更多内存分配
-    //std::vector<std::vector<int>> matrix;
-    //for (int i = 0; i < 1000; i++) {
-    //    matrix.emplace_back(1000, i);
-    //}
-    
-    //PERF_END(test2)
-    
+    }    
     return 0;
 }
 //cl /EHsc /std:c++17 01UnpackStruct.cpp /link psapi.lib 
