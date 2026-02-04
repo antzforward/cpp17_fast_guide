@@ -2,6 +2,21 @@
 #define __TEST_H_INCLUDED__
 #include <iostream>
 #include <memory>
+#include <optional>
+//模拟复杂耗时的函数
+std::optional<int> expensive_operation(int n)
+{
+	// CPU密集型操作模拟
+    volatile long sum = 0;
+    for (int i = 0; i < n * 1000000; ++i) {
+        sum += i % 100;
+    }
+    
+    if (sum > 0) {
+        return static_cast<int>(sum % 1000);
+    }
+    return std::nullopt;
+}
 // 完整的性能分析宏
 #if _WIN32
 #include <windows.h>
