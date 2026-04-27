@@ -8,6 +8,21 @@
 #include <memory> //unique_ptr 等
 #include <utility> //std::pair
 #include "../TestMacro.h"
+/**
+ * @file 21PythonWalrusOpLike.cpp
+ * @ingroup 01Basics
+ * @brief C++17 带初始化的 switch 语句 — switch(init; expr) 的各种用法
+ * @details 对应 C++17 `switch(initialization; expression)` 语法，
+ *          将变量初始化和 switch 判断合并，变量作用域限制在 switch 块内。
+ *
+ *          覆盖场景：
+ *          - 基本的 switch + 初始化
+ *          - 配合 std::variant 的类型分发
+ *          - 配合结构化绑定解包 map::insert 返回值
+ *          - tuple 解包作为 switch 初始化语句
+ *          - std::visit 模式替代复杂 switch（C++17 引入）
+ *          - 配合 constexpr if 的类型判断
+ */
 // Python := Walrus Operator（海象运算符，因为它看起来就是一个海象旋转了90°）
 // 当需要同一个表达式中同时使用和测试一个值的时候，它有助于避免冗余代码--尤其是在循环或者条件语句中。
 // 在c++中，这种用法叫做带初始化的if和switch语句，c++的for语句自然就有这个初始化过程，如果while不好写，用for语句吧

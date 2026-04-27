@@ -4,7 +4,19 @@
 #include <utility>
 #include <type_traits>
 #include "../TestMacro.h"
-
+/**
+ * @file 03TupleLikeInheritance.cpp
+ * @ingroup 01Basics
+ * @brief ECS 风格的继承结构体 — 通过 tuple-like API 支持结构化绑定
+ * @details 演示在 ECS（Entity-Component-System）架构中常见的继承式组件组合：
+ *          - Transform（基础位置组件，3 个 float）
+ *          - Physics（继承 Transform，增加速度和质量，共 7 个 float）
+ *          - Renderable（继承 Transform，增加纹理和颜色，共 8 个成员）
+ *
+ *          每个组件通过成员模板 `get<I>()` 实现基类成员的委托访问，
+ *          配合 `std::tuple_size` / `std::tuple_element` 特化和非成员 get 函数，
+ *          使继承层级的结构体可以像 tuple 一样被解包。
+ */
 // 在ECS中，结构体继承的形式进行解析的过程
 // 基础组件
 struct Transform {

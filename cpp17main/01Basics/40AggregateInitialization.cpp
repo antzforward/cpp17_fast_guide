@@ -4,6 +4,18 @@
 #include <string>
 #include <complex>
 /**
+ * @file 40AggregateInitialization.cpp
+ * @ingroup 01Basics
+ * @brief C++17 聚合体初始化 — 纯数据类型 struct 的继承与初始化
+ * @details 演示 C++17 对聚合体（aggregate）定义的放宽：
+ *          - 允许继承（C++17 之前不允许），类似 Python 的 named tuple
+ *          - 支持多基类继承的聚合体（如同时继承 std::string 和 std::complex）
+ *          - 支持从非聚合体基类（如 std::string）派生聚合体
+ *          - 使用 `std::is_aggregate<>` 类型特征进行检测
+ *
+ *          聚合体是 ECS 架构中 pure data 形式的基础。
+ */
+/**
  聚合体初始化的改进
  聚合体可以认为是纯数据类型的struct，可以通过继承的关系逐渐扩展数据类型
  感觉跟ECS中E的定义很接近。

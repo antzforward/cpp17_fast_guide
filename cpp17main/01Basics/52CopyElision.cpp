@@ -4,6 +4,16 @@
 #include <memory>
 #include <atomic>
 #include "../TestMacro.h"
+/**
+ * @file 52CopyElision.cpp
+ * @ingroup 01Basics
+ * @brief 强制删除拷贝/移动后的省略策略 — 工厂函数与引用传递的对比
+ * @details 在 50CopyElisison.cpp 的基础上进一步实验：
+ *          - 当显式 `= delete` 拷贝和移动构造函数后，按值传递完全不可用
+ *          - 使用泛型工厂函数 `create<T>()` 的替代方案
+ *          - 按引用传递（const& / &）在删除拷贝/移动后的性能表现
+ *          - 结论：对于复杂对象，按引用传递仍然是最实用的方案
+ */
 // 50CopyElisison.cpp 里面还是有临时变量拷贝
 // 这里强制省略之。这次是在std的机制下面进行保证，直接减少拷贝
 // 从测试结果来看，test2性能下降非常明显。感觉删除移动操作还是变慢了。移动带来的性能下降很明显的。

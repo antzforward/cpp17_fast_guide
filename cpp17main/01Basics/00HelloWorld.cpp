@@ -1,6 +1,14 @@
 #include <iostream>
 #include <vector>
 #include "../TestMacro.h"
+/**
+ * @file 00HelloWorld.cpp
+ * @ingroup 01Basics
+ * @brief 性能测试入门 — PERF_START/PERF_END 宏的使用示例
+ * @details 演示如何使用自定义的 PERF 宏对内存分配进行性能基准测试，
+ *          包括一维 vector 和二维 vector 的分配场景。
+ *          编译时建议开启 O2 优化以获得有意义的性能数据。
+ */
 // 使用示例
 int main() {
 	// added the two lines below

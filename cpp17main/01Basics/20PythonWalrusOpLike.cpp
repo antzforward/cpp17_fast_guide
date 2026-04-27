@@ -6,6 +6,22 @@
 #include <optional> //返回值，不抛出异常的形式
 #include <memory> //unique_ptr 等
 #include "../TestMacro.h"
+/**
+ * @file 20PythonWalrusOpLike.cpp
+ * @ingroup 01Basics
+ * @brief C++17 带初始化的 if 语句 — 类似 Python 海象运算符的用法
+ * @details 对应 Python 3.8 的 `:=` 海象运算符（walrus operator），
+ *          C++17 提供了 `if(init; condition)` 语法，将变量的声明和条件判断合二为一，
+ *          变量作用域限制在 if-else 块内，避免外部泄露。
+ *
+ *          覆盖场景：
+ *          - 传统写法 vs 现代写法的对比
+ *          - 智能指针（unique_ptr）的生命周期管理
+ *          - 容器查找（map.find）
+ *          - 多变量初始化（tuple + 结构化绑定）
+ *          - std::optional 的值检查
+ *          - 动态类型转换（dynamic_cast）
+ */
 // Python := Walrus Operator（海象运算符，因为它看起来就是一个海象旋转了90°）
 // 当需要同一个表达式中同时使用和测试一个值的时候，它有助于避免冗余代码--尤其是在循环或者条件语句中。
 // 在c++中，这种用法叫做带初始化的if和switch语句，c++的for语句自然就有这个初始化过程，如果while不好写，用for语句吧

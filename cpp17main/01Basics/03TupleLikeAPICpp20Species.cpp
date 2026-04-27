@@ -2,6 +2,14 @@
 #include <string>
 #include <utility>
 #include <type_traits>
+/**
+ * @file 03TupleLikeAPICpp20Species.cpp
+ * @ingroup 01Basics
+ * @brief C++20 风格的 tuple-like API — 使用成员模板 get 和 std::tuple_size
+ * @details 在 03TupleLikeAPI.cpp 的基础上，将非成员 get 函数改为成员模板 get<I>，
+ *          并分别特化 `const&`、`&`、`&&` 三种引用限定的重载，
+ *          更贴近 C++20 结构化绑定对 tuple-like 协议的要求。
+ */>
 
 class Customer2 {
 private:

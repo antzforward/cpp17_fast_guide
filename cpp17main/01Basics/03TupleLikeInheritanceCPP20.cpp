@@ -4,6 +4,15 @@
 #include <type_traits>
 #include <concepts>
 #include "../TestMacro.h"
+/**
+ * @file 03TupleLikeInheritanceCPP20.cpp
+ * @ingroup 01Basics
+ * @brief C++20 改进版 ECS 继承结构体 — 使用 concept 约束的 get 函数
+ * @details 在 03TupleLikeInheritance.cpp 的基础上引入 C++20 特性：
+ *          - 使用 `concept HasGet` 约束非成员 get 函数模板
+ *          - 保留 Transform/Physics/Renderable 的继承层级解包能力
+ *          - 对比 C++17 版本，展示了 concept 如何提升模板的可读性和约束力
+ */
 
 // 使用concept和更简洁的语法
 // 在ECS中，结构体继承的形式进行解析的过程

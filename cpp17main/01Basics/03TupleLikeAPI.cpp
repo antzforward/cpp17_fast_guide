@@ -3,6 +3,16 @@
 #include "../TestMacro.h"
 #include <utility> //for std::move
 #include <string> //for class object
+/**
+ * @file 03TupleLikeAPI.cpp
+ * @ingroup 01Basics
+ * @brief 为自定义类实现 tuple-like API — 结构化绑定的完整支持
+ * @details 演示如何通过特化 `std::tuple_size`、`std::tuple_element` 和
+ *          自定义 `get<I>()` 函数，使自定义类支持 C++17 结构化绑定。
+ *          展示了两种风格：
+ *          - Customer：传统的逐个特化 get 函数
+ *          - Customer2：使用 `if constexpr` + `decltype(auto)` + `if` 编译期分支的更现代写法
+ */
 
 class Customer{
 private:

@@ -3,7 +3,17 @@
 #include <string>
 #include <thread>
 #include "../TestMacro.h"
-//// 强制省略拷贝或传递未实质化的对象，注意这里打开O2优化非常重要
+/**
+ * @file 50CopyElisison.cpp
+ * @ingroup 01Basics
+ * @brief C++17 拷贝省略（Copy Elision）— 强制省略临时对象的拷贝
+ * @details 演示 C++17 引入的强制拷贝省略规则：
+ *          - 当以值传递或返回临时对象时，编译器**必须**省略拷贝（guaranteed elision）
+ *          - 区分 RVO（Return Value Optimization）和 NRVO（Named RVO）
+ *          - 对比有/无拷贝/移动构造函数时的性能差异
+ *          - 对比按值传递 vs 按引用传递的性能
+ *          - 需开启 O2 优化才能观察到显著的性能差异
+ *///// 强制省略拷贝或传递未实质化的对象，注意这里打开O2优化非常重要
 /**
 从技术上讲，C++17引入了一个新的规则：
 	当以值传递或返回一个临时对象的时候，必须省略对该临时对象的拷贝
