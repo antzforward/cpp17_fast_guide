@@ -1,0 +1,14 @@
+*/target
+*.pdb
+*.exe
+*.rlib
+*.obj
+*.ilk
+*.asm
+
+.vs/
+*/docs/
+*/.idea/
+*/.claude/
+*/Doxyfile
+
