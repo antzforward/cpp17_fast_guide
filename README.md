@@ -663,5 +663,21 @@ auto size = std::distance(flist.begin(),flist.end());
 ### 06 Unique_ptr 唯一指针的用法 
 ### 07 Weak_ptr 弱共享指针的用法 不增加引用计数的指针，重要作用。
 
-## Chapter 9 正则表达式Regex
+## Chapter 10 正则表达式Regex
 ### 01 文件系统的过滤方案
+
+## Chapter 11 Thread
+异步编程的各种方案比较
+
+## Chapter 12 Miscellaneous
+C\++的杂项，一些可能是新版本的c\++才有的写法与用法
+## Chapter 13 SDL-3 
+要学习SDL-3，改动很多，还支持底层的rendering driver想过的内容，对SDL2 有扩展
+
+## Chapter14 C语言名题精选百例转C++23版本
+### 为什么要学这个
+
+## 具体数学-CPP版本
+学习《具体数学》，然后写完示例，总结一下
+
+学习一些奇妙的技巧，重要的是要对比测试是否有c++高级版本有替代方案，于是就有相同名字，然后不同后缀的编码形式，而且有自己的测试流程最终比较性能
