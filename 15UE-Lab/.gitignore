@@ -1,0 +1,11 @@
+/Binaries/
+/Intermediate/
+/Saved/
+/.vs/
+/artifacts/
+/settings.local.json
+/Source/UELab/Private/ActiveExperiment.cpp
+/Source/UELab/Private/ActiveExercise.inl
+/Source/UELab/Private/ActiveLesson/
+*.sln
+*.vcxproj*

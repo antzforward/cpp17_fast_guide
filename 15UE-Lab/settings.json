@@ -1,0 +1,6 @@
+{
+  "engineRoot": "E:/EpicGames/UE_5.6",
+  "expectedEngineVersion": "5.6.1",
+  "timeoutSeconds": 120,
+  "buildTimeoutSeconds": 600
+}

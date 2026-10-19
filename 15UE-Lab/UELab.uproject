@@ -1,0 +1,10 @@
+{
+  "FileVersion": 3,
+  "EngineAssociation": "5.6",
+  "Category": "Learning",
+  "Description": "Real Unreal Engine C++ experiments from the command line",
+  "DisableEnginePluginsByDefault": true,
+  "Modules": [
+    { "Name": "UELab", "Type": "Runtime", "LoadingPhase": "Default" }
+  ]
+}

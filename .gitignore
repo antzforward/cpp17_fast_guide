@@ -12,3 +12,7 @@ idea/
 */idea/
 */.claude/
 
+# UE lab learning notes are source material, not generated documentation.
+!15UE-Lab/docs/
+!15UE-Lab/docs/**
+

@@ -11,11 +11,11 @@
 ## Chapter 2 语法增强部分
 ### 01 nullptr，NULL，zero的比较与函数调用匹配
 使用编译指令：`cl /EHsc 01nullptr_zero.cpp` 运行01nullptr_zero.exe 获得输出内容，可以看到NULL的宏定义为int 0。
-```
+```cpp
 NULL == 0
 call foo(int i)
 call foo(int i)
-call foo(char* ch))
+call foo(char* ch)
 ```
 增加调用foo(NULL)也可以，看来NULL只是被认为是宏了，值为0
 
