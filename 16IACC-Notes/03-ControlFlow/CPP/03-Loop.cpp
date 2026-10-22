@@ -6,6 +6,7 @@
 #include <linq.hpp>
 #include <cmath>
 #include <numbers>
+#include <numeric>
 #include <iostream>
 using namespace std;
 int main(int argc, char* argv[]) {
@@ -22,7 +23,7 @@ int main(int argc, char* argv[]) {
             2、求pi/4的近似值
             3、求 e的近似值
             4、阶乘之和
-            5、欧几里得除法的形式
+            5、非负整数gcd与lcm
         不同写法：
             1、暴力解法
             2、STL的API使用
@@ -202,6 +203,7 @@ int main(int argc, char* argv[]) {
             };
             cout<<format("{:.15f}\n",e_limit(100000));   
         }else if( branch == 4){
+            //误差也有，14位的时候就出错了，最好的泰勒展示。
             //辛普森积分法，确实辛普森法要好好学
             // e=\int_0^1 e^x dx + 1
             auto simpson =[](std::function<double(double)>f,double a, double b, int N){
@@ -226,24 +228,106 @@ int main(int argc, char* argv[]) {
             };
             cout<<format("{:.15f}\n",e_simpson(1000));   
         }else if( branch == 5){
-            // 第 186 行的递推：factor 从 1 开始，第 i 项乘上 i，再加 1/factor。
-            // exclusive_scan 先给出 0!,1!,2!,...，再取倒数相加。
-            auto e_taylor = [](int N) {
-                namespace vs = linq::views;
-                return vs::iota(1, N + 1)
-                    | vs::exclusive_scan(1.0, std::multiplies<>())
-                    | vs::transform([](double factor) { return 1.0 / factor; })
-                    | linq::fold(0.0, std::plus<>());
-            };
-            cout << format("{:.15f}\n", e_taylor(20));
+            //辛普森积分法，确实辛普森法要好好学，写linq写法
         }
         //求 e的近似值，
         // 也有用反函数形式求的？
         // 用展式来求。
     }else if(problem == 4){
         //阶乘之和，要考虑accumulate的值超过范围的问题。
-    }else if(problem == 5){
-        //欧几里得除法的形式
+        //最常见的优化就是，保存中间值
+        int N = 0;
+        if (argc >= 4) {
+            N = std::stoi(argv[3]);
+        }
+        if( N == 0 )
+            return -1;
+        if(branch == 1 ){
+            int factorial = 1;
+            int sum = 0;
+            for(int i=1;i<=N;i++){
+                factorial *= i;
+                factorial %= 1'000'000;
+                sum += factorial;
+                sum %= 1'000'000;
+            }
+            cout<<format("{}\n",sum);
+        }else if(branch == 2 ){
+            int factorial = 1;
+            namespace vs = linq::views;
+            auto sum = vs::iota(1,N+1)
+            | vs::transform([&factorial](int k){
+                factorial *= k;
+                factorial %= 1'000'000;
+                return factorial%1'000'000;
+            })
+            |linq::fold(0, [](int acc,int term){
+                return (acc+term)%1'000'000;
+            });
+            
+            cout<<format("{}\n",sum);
+        }else if(branch == 3 ){
+            // 我想不到特别好的方法来优化，
+        }
+    } else if(problem == 5){
+        //最大公约数gcd与最小公倍数lcm
+        //lcm = a/gcd(a,b)*b,所以核心还是在求gcd
+        //gcd(a,b)=max{k>0:(k|a)and(k|b)}
+        //gcd(a,b)= a if b=0 else gcd(b,a mod b) 
+        int a = 1,b=1;
+        if (argc >= 5) {
+            a = std::stoi(argv[3]);
+            b = std::stoi(argv[4]);
+        }
+        if( a< 0 || b<0)
+            return -1;
+        if( branch == 1 ){
+            //重点是函数形式的递归调用写法，
+            auto gcd =[](auto && self,int a, int b)->int{
+                return b == 0? a: self(self,b, a%b);
+            };
+            auto c = gcd(gcd,a, b);
+            auto d = a/c*b;
+            cout<<format("{},{},{},{}",a,b,c,d);
+        }else if(branch == 2){
+            //这里写个linq版本
+             // 欧几里得：当前状态 (x,y) 推进一步变成 (y, x%y)。
+            // a、b 只拷进生成器的初值，take_while / fold 的 lambda 不捕获外面的变量。
+            // take_while 会丢掉第一项 y==0，所以留在序列里的最后一项，它的 y 就是 gcd。
+            // b==0 时一项都没有，fold 的初值直接是答案：gcd=a，lcm=0。
+            // a0、b0 跟着状态走，最后一项同时把 lcm=a0/gcd*b0 算出来。
+            namespace vs = linq::views;
+            struct St { int x, y, a0, b0; };
+            struct Ans { int gcd, lcm; };
+            auto ans = vs::generate([s = St{a, b, a, b}]() mutable {
+                St cur = s;
+                s = St{cur.y, cur.y ? cur.x % cur.y : 0, cur.a0, cur.b0};
+                return cur;
+            })
+            | vs::take_while([](St s) { return s.y != 0; })
+            | linq::fold(Ans{a, 0}, [](Ans, St s) {
+                int g = s.y;
+                return Ans{g, s.a0 / g * s.b0};
+            });
+            cout<<format("{},{},{},{}", a, b, ans.gcd, ans.lcm);
+
+        }else if(branch == 3){
+            //不用递归了。
+            auto gcd=[](int a,int b)->int{
+                while(b){
+                    a %= b;
+                    swap(a,b);
+                }
+                return a;
+            };
+            auto c = gcd(a, b);
+            auto d = a/c*b;
+            cout<<format("{},{},{},{}",a,b,c,d);
+        }else if(branch == 4 ){
+            auto c = std::gcd(a, b);
+            auto d = std::lcm(a,b);
+            cout<<format("{},{},{},{}",a,b,c,d);
+        }
     }
-    
+    return 0;
 }

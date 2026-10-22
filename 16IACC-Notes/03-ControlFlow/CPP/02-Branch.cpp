@@ -234,7 +234,7 @@ int main(int argc, char* argv[]) {
                 //思路就是，第一次除法得到商，比如 a/b=n...d,然后执行c次，每次都是 d=d*10，a=d
                 //如此循环即可。
                 //FIX BUG，四舍五入可能出现累进一位，比如0.999995 累进之后就到整数位置了。
-                // 看来最后还是要保存到vector里面的吧
+                // 看来最后还是要保存到
                 int n = a/b;
                 cout<<format("{}.",n);
                 int odd = a - n*b;

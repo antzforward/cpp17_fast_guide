@@ -9,7 +9,7 @@
 #include <range/v3/view/transform.hpp>
 #include <range/v3/view/cartesian_product.hpp>
 #include <range/v3/view/take_while.hpp>
-#include <range/v3/view/exclusive_scan.hpp>
+#include <range/v3/view/generate.hpp>
 #include <utility>
 
 namespace linq {
